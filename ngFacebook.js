@@ -9,7 +9,7 @@
  * 9/8/13 10:25 PM
  */
 
-angular.module('ngFacebook', ['ngRoute'])
+angular.module('ngFacebook', [])
   .provider('$facebook', function() {
     var config = {
       permissions:    'email',
@@ -200,7 +200,7 @@ angular.module('ngFacebook', ['ngRoute'])
       return $facebook;
     }];
   })
-  .run(['$rootScope', '$window', '$location', '$facebook', function($rootScope, $window, $location, $facebook) {
+  .run(['$rootScope', '$window', '$facebook', function($rootScope, $window, $facebook) {
     if($facebook.config('appId')==null) throw "$facebookProvider: `appId` cannot be null";
 
     $window.fbAsyncInit = function() {
