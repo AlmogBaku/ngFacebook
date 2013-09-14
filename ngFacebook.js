@@ -42,8 +42,8 @@ angular.module('ngFacebook', [])
 
     this.$get = ['$q', '$rootScope', function($q, $rootScope) {
       var $facebook=$q.defer();
-      $facebook.config=function(parameter) {
-        return config[parameter];
+      $facebook.config=function(property) {
+        return config[property];
       }
 
       //Initialization
@@ -52,17 +52,10 @@ angular.module('ngFacebook', [])
 
         //Define action events
         angular.forEach([
+          'auth.login', 'auth.logout', 'auth.prompt',
+          'auth.sessionChange', 'auth.statusChange', 'auth.authResponseChange',
           'xfbml.render', 'edge.create', 'edge.remove', 'comment.create',
           'comment.remove', 'message.send'
-        ],function(event) {
-          FB.Event.subscribe(event, function(response) {
-            $rootScope.$broadcast("fb."+event, response, FB);
-          });
-        });
-        //Define auth events
-        angular.forEach([
-          'auth.login', 'auth.logout', 'auth.prompt',
-          'auth.sessionChange', 'auth.statusChange', 'auth.authResponseChange'
         ],function(event) {
           FB.Event.subscribe(event, function(response) {
             $rootScope.$broadcast("fb."+event, response, FB);
