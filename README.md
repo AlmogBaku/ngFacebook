@@ -82,4 +82,4 @@ This project is released over [MIT license](http://opensource.org/licenses/MIT "
 
 Authors
 -------
-[AlmogBaku](https://github.com/AlmogBaku/ "AlmogBaku") - Almog Baku - [http://www.almogbaku.com](http://www.almogbaku.com "AlmogBaku") - by [http://www.godisco.net](http://www.godisco.net "GoDisco")
+[AlmogBaku](http://www.AlmogBaku.com "AlmogBaku") - by [http://www.godisco.net](GoDisco)
