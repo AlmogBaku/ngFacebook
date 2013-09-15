@@ -40,13 +40,23 @@ angular.module('ngFacebook', [])
       return config.customInit;
     };
 
-    this.$get = ['$q', '$rootScope', function($q, $rootScope) {
+    this.$get = ['$q', '$rootScope', '$window', function($q, $rootScope, $window) {
       var $facebook=$q.defer();
       $facebook.config=function(property) {
         return config[property];
       }
 
       //Initialization
+      $facebook.init = function() {
+        if($facebook.config('appId')==null)
+          throw "$facebookProvider: `appId` cannot be null";
+
+        $window.FB.init(
+          angular.extend({ appId: $facebook.config('appId') }, $facebook.config("customInit"))
+        );
+        $rootScope.$broadcast("fb.load", $window.FB);
+      };
+
       $rootScope.$on("fb.load", function(e, FB) {
         $facebook.resolve(FB);
 
@@ -195,14 +205,8 @@ angular.module('ngFacebook', [])
     }];
   })
   .run(['$rootScope', '$window', '$facebook', function($rootScope, $window, $facebook) {
-    if($facebook.config('appId')==null) throw "$facebookProvider: `appId` cannot be null";
-
     $window.fbAsyncInit = function() {
-      $window.FB.init(
-        angular.extend({ appId: $facebook.config('appId') }, $facebook.config("customInit"))
-      );
-
-      $rootScope.$broadcast("fb.load", $window.FB);
+      $facebook.init();
     };
   }])
 ;
