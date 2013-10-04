@@ -130,7 +130,6 @@ angular.module('ngFacebook', [])
           FB.getLoginStatus(function(response) {
             if(response.error)  deferred.reject(response.error)
             else                deferred.resolve(response);
-            $rootScope.$broadcast("fb.auth.authResponseChange", response, FB);
           }, force);
           return deferred.promise;
         });
