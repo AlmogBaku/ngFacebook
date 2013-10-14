@@ -42,9 +42,9 @@ angular.module('ngFacebook', [])
 
     this.$get = ['$q', '$rootScope', '$window', function($q, $rootScope, $window) {
       var $facebook=$q.defer();
-      $facebook.config=function(property) {
+      $facebook.config = function(property) {
         return config[property];
-      }
+      };
 
       //Initialization
       $facebook.init = function() {
@@ -128,8 +128,12 @@ angular.module('ngFacebook', [])
 
         return $facebook.promise.then(function(FB) {
           FB.getLoginStatus(function(response) {
-            if(response.error)  deferred.reject(response.error)
-            else                deferred.resolve(response);
+            if(response.error)  deferred.reject(response.error);
+            else {
+                deferred.resolve(response);
+                if($facebook.isConnected()==null)
+                    $rootScope.$broadcast("fb.auth.authResponseChange", response, FB);
+            }
           }, force);
           return deferred.promise;
         });
@@ -139,7 +143,7 @@ angular.module('ngFacebook', [])
 
         return $facebook.promise.then(function(FB) {
           FB.login(function(response) {
-            if(response.error)  deferred.reject(response.error)
+            if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
           }, { scope: $facebook.config("permissions") });
           return deferred.promise;
@@ -150,7 +154,7 @@ angular.module('ngFacebook', [])
 
         return $facebook.promise.then(function(FB) {
           FB.logout(function(response) {
-            if(response.error)  deferred.reject(response.error)
+            if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
           });
           return deferred.promise;
@@ -161,7 +165,7 @@ angular.module('ngFacebook', [])
 
         return $facebook.promise.then(function(FB) {
           FB.ui(params, function(response) {
-            if(response.error)  deferred.reject(response.error)
+            if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
           });
           return deferred.promise;
@@ -171,7 +175,7 @@ angular.module('ngFacebook', [])
         var deferred=$q.defer();
         var args=arguments;
         args[args.length++] = function(response) {
-          if(response.error)  deferred.reject(response.error)
+          if(response.error)  deferred.reject(response.error);
           else                deferred.resolve(response);
         };
 
