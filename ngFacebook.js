@@ -138,14 +138,15 @@ angular.module('ngFacebook', [])
           return deferred.promise;
         });
       };
-      $facebook.login = function () {
+      $facebook.login = function (permissions) {
+        if(permissions==undefined) var permissions=$facebook.config("permissions");
         var deferred=$q.defer();
 
         return $facebook.promise.then(function(FB) {
           FB.login(function(response) {
             if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
-          }, { scope: $facebook.config("permissions") });
+          }, { scope: permissions });
           return deferred.promise;
         });
       };
@@ -179,7 +180,7 @@ angular.module('ngFacebook', [])
           else                deferred.resolve(response);
         };
 
-        return login_deferred.promise.then(function(FB) {
+        return $facebook.promise.then(function(FB) {
           FB.api.apply(FB, args);
           return deferred.promise;
         });
