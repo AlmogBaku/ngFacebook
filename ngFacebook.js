@@ -218,6 +218,6 @@ angular.module('ngFacebook', [])
     $window.fbAsyncInit = function() {
       $facebook.init();
       $rootScope.$apply();
-   };
+    };
   }])
 ;
