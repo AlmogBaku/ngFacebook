@@ -83,4 +83,5 @@ This project is released over [MIT license](http://opensource.org/licenses/MIT "
 
 Authors
 -------
-[AlmogBaku](http://www.AlmogBaku.com "AlmogBaku") - by [GoDisco](http://www.godisco.net)
+[Almog Baku](http://www.AlmogBaku.com "AlmogBaku") - by [GoDisco](http://www.godisco.net)
+[Amir Valiani](https://github.com/avaliani "Avaliani")
