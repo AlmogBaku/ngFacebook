@@ -72,6 +72,9 @@ angular.module('ngFacebook', [])
             $rootScope.$apply();
           });
         });
+
+        // Make sure 'fb.auth.authResponseChange' fires even if the user is not logged in.
+        $facebook.getLoginStatus();
       });
 
       /**
@@ -93,14 +96,14 @@ angular.module('ngFacebook', [])
        * Authentication
        */
 
-      var login_deferred=$q.defer();
-      var login_deferred_id=0;
-      login_deferred.id=0;
-      $facebook._reset_login_deferred = function() {
-        $facebook.clearCache();
-        login_deferred=$q.defer();
-        login_deferred.id=login_deferred_id++;
-      };
+      var firstAuthResp=$q.defer();
+      var firstAuthRespReceived=false;
+      function resolveFirstAuthResp(FB) {
+        if (!firstAuthRespReceived) {
+          firstAuthRespReceived=true;
+          firstAuthResp.resolve(FB);
+        }
+      }
 
       $facebook.setCache("connected", null);
       $facebook.isConnected = function() {
@@ -111,15 +114,11 @@ angular.module('ngFacebook', [])
 
         if(response.status=="connected") {
           $facebook.setCache("connected", true);
-          login_deferred.resolve(FB);
         } else {
           $facebook.setCache("connected", false);
-          login_deferred.reject(response.status);
         }
+        resolveFirstAuthResp(FB);
       });
-
-      $rootScope.$on("fb.auth.login", $facebook._reset_login_deferred);
-      $rootScope.$on("fb.auth.logout", $facebook._reset_login_deferred);
 
       $facebook.getAuthResponse = function () {
         return FB.getAuthResponse();
@@ -186,7 +185,7 @@ angular.module('ngFacebook', [])
           $rootScope.$apply();
         };
 
-        return $facebook.promise.then(function(FB) {
+        return firstAuthResp.promise.then(function(FB) {
           FB.api.apply(FB, args);
           return deferred.promise;
         });
