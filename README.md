@@ -11,7 +11,7 @@ Installation
 
 Example:
 
-```
+```javascript
 angular.module('<your-app>', ['ngFacebook'])
 
 .config( function( $facebookProvider ) {
@@ -19,9 +19,10 @@ angular.module('<your-app>', ['ngFacebook'])
 })
 
 .run( function( $rootScope ) {
-  // Load the SDK asynchronously
+  // Cut and paste the "Load the SDK" code from the facebook javascript sdk page.
+  
+  // Load the facebook SDK asynchronously
   (function(){
-     // Cut and paste from facebook javascript sdk page
      ...
    }());
 })
