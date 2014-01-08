@@ -5,9 +5,58 @@ Angular service to handle facebook
 Installation
 ------------
 1. Download the package, you can download the [zip file](https://github.com/GoDisco/ngFacebook/archive/master.zip), or use bower: `bower install ng-facebook`
-1. Include the [*Facebook SDK for javascript*](https://developers.facebook.com/docs/reference/javascript/), **BUT DO NOT** initialize the sdk.
-1. Include `ngFacebook` in your application dependencies
+1. Modify your application to include `ngFacebook` in your application dependencies
+1. Configure the ngFacebook module using the configuration steps outlined in the section titled "Configuration" below.
+1. Load the [*Facebook SDK for javascript*](https://developers.facebook.com/docs/reference/javascript/), **BUT DO NOT** call `FB.init` or set `window.fbAsyncInit`. These steps are automatically done by the ngFacebook module.
 
+Example:
+
+```
+angular.module('your-app', ['ngFacebook'])
+
+.config( function( $facebookProvider ) {
+  $facebookProvider.setAppId('<your-app-id>');
+})
+
+.run( function( $rootScope ) {
+  // Load the SDK asynchronously
+  (function(){
+     // If we've already installed the SDK, we're done
+     if (document.getElementById('facebook-jssdk')) {return;}
+
+     // Get the first script element, which we'll use to find the parent node
+     var firstScriptElement = document.getElementsByTagName('script')[0];
+
+     // Create a new script element and set its id
+     var facebookJS = document.createElement('script'); 
+     facebookJS.id = 'facebook-jssdk';
+
+     // Set the new script's source to the source of the Facebook JS SDK
+     facebookJS.src = '//connect.facebook.net/en_US/all.js';
+
+     // Insert the Facebook JS SDK into the DOM
+     firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
+   }());
+})
+
+;
+
+var DemoCtrl = function ($scope, $facebook) {
+  ...
+  function refresh() {
+    $facebook.api("/me").then( 
+      function(response) {
+        $scope.welcomeMsg = "Welcome " + response.name;
+      },
+      function(err) {
+        $scope.welcomeMsg = "Please log in";
+      });
+  }
+};
+
+```
+
+For more details check out this [plunker which uses ngFacebook](http://plnkr.co/edit/HcYBFKbqFcgQGhyCGQMw?p=preview).
 
 Configuration
 -----
