@@ -12,10 +12,10 @@ Installation
 Example:
 
 ```
-angular.module('your-app', ['ngFacebook'])
+angular.module('<your-app>', ['ngFacebook'])
 
 .config( function( $facebookProvider ) {
-  $facebookProvider.setAppId('<your-app-id>');
+  $facebookProvider.setAppId('<your-facebook-app-id>');
 })
 
 .run( function( $rootScope ) {
