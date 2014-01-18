@@ -69,7 +69,7 @@ angular.module('ngFacebook', [])
         ],function(event) {
           FB.Event.subscribe(event, function(response) {
             $rootScope.$broadcast("fb."+event, response, FB);
-            $rootScope.$apply();
+            if(!$rootScope.$$phase) $rootScope.$apply();
           });
         });
 
@@ -134,7 +134,7 @@ angular.module('ngFacebook', [])
                 if($facebook.isConnected()==null)
                     $rootScope.$broadcast("fb.auth.authResponseChange", response, FB);
             }
-            $rootScope.$apply();
+            if(!$rootScope.$$phase) $rootScope.$apply();
           }, force);
           return deferred.promise;
         });
@@ -147,7 +147,7 @@ angular.module('ngFacebook', [])
           FB.login(function(response) {
             if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
-            $rootScope.$apply();
+            if(!$rootScope.$$phase) $rootScope.$apply();
           }, { scope: permissions });
           return deferred.promise;
         });
@@ -159,7 +159,7 @@ angular.module('ngFacebook', [])
           FB.logout(function(response) {
             if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
-            $rootScope.$apply();
+            if(!$rootScope.$$phase) $rootScope.$apply();
           });
           return deferred.promise;
         });
@@ -171,7 +171,7 @@ angular.module('ngFacebook', [])
           FB.ui(params, function(response) {
             if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
-            $rootScope.$apply();
+            if(!$rootScope.$$phase) $rootScope.$apply();
           });
           return deferred.promise;
         });
@@ -182,7 +182,7 @@ angular.module('ngFacebook', [])
         args[args.length++] = function(response) {
           if(response.error)  deferred.reject(response.error);
           else                deferred.resolve(response);
-          $rootScope.$apply();
+          if(!$rootScope.$$phase) $rootScope.$apply();
         };
 
         return firstAuthResp.promise.then(function(FB) {
@@ -216,7 +216,7 @@ angular.module('ngFacebook', [])
   .run(['$rootScope', '$window', '$facebook', function($rootScope, $window, $facebook) {
     $window.fbAsyncInit = function() {
       $facebook.init();
-      $rootScope.$apply();
+      if(!$rootScope.$$phase) $rootScope.$apply();
     };
   }])
 ;
