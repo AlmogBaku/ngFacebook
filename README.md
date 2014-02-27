@@ -118,8 +118,17 @@ License
 This project is released over [MIT license](http://opensource.org/licenses/MIT "MIT License")
 
 
+Sponsors
+------
+Thanks to our sponsors for this project:
+
+1. [GoDisco](http://www.godisco.net)
+1. [JetBrains](http://www.jetbrains.com/) - for providing the great IDE [PhpStorm](http://www.jetbrains.com/phpstorm/)
+
+
 Authors
 -------
 
 1. [Almog Baku](http://www.AlmogBaku.com "AlmogBaku") - by [GoDisco](http://www.godisco.net)
 1. [Amir Valiani](https://github.com/avaliani "Avaliani")
+1. [Tal Gleichger](http://gleichger.com/ "talgleichger") - by [GoDisco](http://www.godisco.net)
