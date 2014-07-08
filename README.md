@@ -55,23 +55,23 @@ You *must* configure your `facebook application ID` in your app, for example:
     });
 
 ### Additional configurations
-You can also configure the next properties.
-
-Use `set` and `get`. For example `$facebookProvider.setAppId(11111)`
+You can also configure the following properties. Both `set` and `get` methods are available for each property.
 
 
-1. `permissions(<string>)` for permissions which required by your app.
+1. `permissions(<string>)` - permissions required by your app.
 
     Example:
 
         $facebookProvider.setPermissions("email,user_likes");
 
-1. `customInit(<object>)` custom initial p.
+1. `customInit(<object>)` - the parameters to pass to `FB.init()`. The 'appId' parameter is automatically specified using the value passed to '$facebookProvider.setAppId()', however the remaining parameters are configurable.
 
     Example to set:
 
         $facebookProvider.setCustomInit({
-          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html'
+          channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html',
+          xfbml      : true,
+          version    : 'v2.0'
         });
 
 
