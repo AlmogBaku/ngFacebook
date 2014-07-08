@@ -180,8 +180,9 @@ angular.module('ngFacebook', [])
         var deferred=$q.defer();
         var args=arguments;
         args[args.length++] = function(response) {
-          if(response.error)  deferred.reject(response.error);
-          else                deferred.resolve(response);
+          if(response.error)        deferred.reject(response.error);
+          if(response.error_msg)    deferred.reject(response);
+          else                      deferred.resolve(response);
           if(!$rootScope.$$phase) $rootScope.$apply();
         };
 
