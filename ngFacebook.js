@@ -139,16 +139,21 @@ angular.module('ngFacebook', [])
           return deferred.promise;
         });
       };
-      $facebook.login = function (permissions) {
+      $facebook.login = function (permissions, rerequest) {
         if(permissions==undefined) var permissions=$facebook.config("permissions");
         var deferred=$q.defer();
+
+        var loginOptions = { scope: permissions };
+        if (rerequest) {
+          loginOptions.auth_type = 'rerequest';
+        }
 
         return $facebook.promise.then(function(FB) {
           FB.login(function(response) {
             if(response.error)  deferred.reject(response.error);
             else                deferred.resolve(response);
             if(!$rootScope.$$phase) $rootScope.$apply();
-          }, { scope: permissions });
+          }, loginOptions);
           return deferred.promise;
         });
       };
