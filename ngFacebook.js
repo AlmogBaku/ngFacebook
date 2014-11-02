@@ -169,9 +169,11 @@ angular.module('ngFacebook', [])
 
         return $facebook.promise.then(function(FB) {
           FB.ui(params, function(response) {
-            if(response && response.post_id)     deferred.resolve(response);
-            else if (response && response.error) deferred.reject(response.error);
-            else                                 deferred.reject(null);
+            if(response && response.error_code) {
+              deferred.reject(response.error_message);
+            } else {
+              deferred.resolve(response);
+            }
             if(!$rootScope.$$phase) $rootScope.$apply();
           });
           return deferred.promise;
