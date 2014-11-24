@@ -33,6 +33,9 @@ angular.module('ngFacebook', [])
       return config.permissions;
     };
     this.setCustomInit = function(customInit) {
+      if(angular.isDefined(customInit.appId)) {
+        this.setAppId(customInit.appId);
+      }
       config.customInit=customInit;
       return this;
     };
