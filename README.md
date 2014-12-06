@@ -54,6 +54,11 @@ You *must* configure your `facebook application ID` in your app, for example:
       $facebookProvider.setAppId(11111111111);
     });
 
+If you need can select the API version of facebook, for example:
+    app.config(function(FacebookProvider) {
+      $facebookProvider.setVersion('v2.1');
+    });
+
 ### Additional configurations
 You can also configure the following properties. Both `set` and `get` methods are available for each property.
 
@@ -86,7 +91,8 @@ Using
 1. `$facebook.ui(params)`   - Do UI action(see facebook sdk docs). Return *promise* of the result.
 1. `$facebook.api(args...)`   - Do API action(see facebook sdk docs). Return *promise* of the result.
 1. `$facebook.cachedApi(args...)`   - Do API action(see above), but the result will cached. Return *promise* of the result.
-
+1. `$facebook.setVersion(version)` - Set another SDK version
+1. `$facebook.getVersion()` - Get current SDK version
     Example:
 
         app.controller('indexCtrl', function($scope, $facebook) {

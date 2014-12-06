@@ -14,24 +14,28 @@ angular.module('ngFacebook', [])
     var config = {
       permissions:    'email',
       appId:          null,
-      customInit:     {}
+      customInit:     {},
+      version: 'v2.2'
     };
-
 
     this.setAppId = function(appId) {
       config.appId=appId;
       return this;
     };
+
     this.getAppId = function() {
       return config.appId;
     };
+
     this.setPermissions = function(permissions) {
       config.permissions=permissions;
       return this;
     };
+
     this.getPermissions = function() {
       return config.permissions;
     };
+
     this.setCustomInit = function(customInit) {
       if(angular.isDefined(customInit.appId)) {
         this.setAppId(customInit.appId);
@@ -39,8 +43,18 @@ angular.module('ngFacebook', [])
       config.customInit=customInit;
       return this;
     };
+
     this.getCustomInit = function() {
       return config.customInit;
+    };
+
+    this.setVersion = function(version) {
+      config.version = version;
+      return this;
+    };
+
+    this.getVersion = function() {
+      return config.version;
     };
 
     this.$get = ['$q', '$rootScope', '$window', function($q, $rootScope, $window) {
@@ -55,7 +69,7 @@ angular.module('ngFacebook', [])
           throw "$facebookProvider: `appId` cannot be null";
 
         $window.FB.init(
-          angular.extend({ appId: $facebook.config('appId') }, $facebook.config("customInit"))
+          angular.extend({ appId: $facebook.config('appId'), version: $facebook.config("version") }, $facebook.config("customInit"))
         );
         $rootScope.$broadcast("fb.load", $window.FB);
       };
