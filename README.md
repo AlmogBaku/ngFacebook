@@ -54,11 +54,6 @@ You *must* configure your `facebook application ID` in your app, for example:
       $facebookProvider.setAppId(11111111111);
     });
 
-If you need can select the API version of facebook, for example:
-    app.config(function(FacebookProvider) {
-      $facebookProvider.setVersion('v2.1');
-    });
-
 ### Additional configurations
 You can also configure the following properties. Both `set` and `get` methods are available for each property.
 
