@@ -36,11 +36,11 @@ module.exports = function() {
     });
   });
   this.When('I login with facebook user "$user" with password "$pass"', function(user, pass, next) {
+    var parentWindow;
     element(by.id('login-btn')).click()
-      .then(function() {
-        return browser.getAllWindowHandles();
-      })
+      .then(browser.getAllWindowHandles)
       .then(function(handles) {
+        parentWindow = handles[0];
         return browser.switchTo().window(handles[1]);
       })
       .then(function() {
@@ -48,31 +48,32 @@ module.exports = function() {
         browser.driver.findElement(by.id('pass')).sendKeys(pass);
         return browser.driver.findElement(by.id('loginbutton')).click();
       })
-      .then(function(){
+      .then(browser.getAllWindowHandles)
+      .then(function(handles){
         var deferred = protractor.promise.defer();
 
-        function continuePromise() {
-          setTimeout(function() {
-            deferred.fulfill();
-          }, 1500);
+        if(handles.length===1) {
+          deferred.fulfill();
         }
-        browser.driver.isElementPresent(by.id('platformDialogForm')).then(function(exists) {
-          if(exists) {
-            deferred.fulfill(browser.driver.findElement(by.css('button[name=__CONFIRM__]')).click().then());
-          } else {
-            continuePromise();
-          }
-        }).thenCatch(continuePromise);
+
+        //wait for window to be ready
+        setTimeout(function() {
+          browser.driver.isElementPresent(by.id('platformDialogForm')).then(function (exists) {
+            if (exists) {
+              deferred.fulfill(browser.driver.findElement(by.css('button[name=__CONFIRM__]')).click());
+            } else {
+              deferred.fulfill();
+            }
+          }).thenCatch(deferred.fulfill);
+        }, 500);
+
         return deferred.promise;
       })
-      .then(browser.getAllWindowHandles)
-      .then(function(handles) {
-        return browser.switchTo().window(handles[0]);
+      .then(function() {
+        return browser.switchTo().window(parentWindow);
       })
       .then(function() {
-        setTimeout(function() {
-          next();
-        }, 500);
+        setTimeout(next, 1000);
       });
   });
   this.Then('I should be logged in', function(next) {
