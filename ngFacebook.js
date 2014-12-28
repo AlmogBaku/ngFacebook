@@ -14,9 +14,9 @@ angular.module('ngFacebook', [])
     var config = {
       permissions:    'email',
       appId:          null,
+      version:        'v1.0',
       customInit:     {}
     };
-
 
     this.setAppId = function(appId) {
       config.appId=appId;
@@ -24,6 +24,13 @@ angular.module('ngFacebook', [])
     };
     this.getAppId = function() {
       return config.appId;
+    };
+    this.setVersion = function(version) {
+      config.version=version;
+      return this;
+    };
+    this.getVersion = function() {
+      return config.version;
     };
     this.setPermissions = function(permissions) {
       config.permissions=permissions;
@@ -55,7 +62,7 @@ angular.module('ngFacebook', [])
           throw "$facebookProvider: `appId` cannot be null";
 
         $window.FB.init(
-          angular.extend({ appId: $facebook.config('appId') }, $facebook.config("customInit"))
+          angular.extend({ appId: $facebook.config('appId'), version: $facebook.config('version') }, $facebook.config("customInit"))
         );
         $rootScope.$broadcast("fb.load", $window.FB);
       };
@@ -143,7 +150,7 @@ angular.module('ngFacebook', [])
         });
       };
       $facebook.login = function (permissions, rerequest) {
-        if(permissions==undefined) var permissions=$facebook.config("permissions");
+        if(permissions==undefined) permissions=$facebook.config("permissions");
         var deferred=$q.defer();
 
         var loginOptions = { scope: permissions };

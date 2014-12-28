@@ -70,9 +70,14 @@ You can also configure the following properties. Both `set` and `get` methods ar
 
         $facebookProvider.setCustomInit({
           channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html',
-          xfbml      : true,
-          version    : 'v2.0'
+          xfbml      : true
         });
+        
+1. `version(<string>)` - specify the version of the api (_v1.0 by default_).
+
+    Example to set:
+
+        $facebookProvider.setVersion("v2.2");
 
 
 Using
