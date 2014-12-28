@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../ngFacebook.js"></script>
+    <script src="testSetup.js"></script>
+</head>
+<body ng-controller="myCtrl">
+    <button id="login-btn" ng-click="loginToggle()">
+        <span ng-if="status">Logout</span>
+        <span ng-if="!status">Login</span>
+    </button>
+    <span ng-if="status" class="message">
+        You are <strong>Logged in</strong> as <em>{{user.first_name}} {{user.last_name}}</em>
+    </span>
+    <span ng-if="!status" class="message">
+        You are <strong>not</strong> logged in.
+    </span>
+</body>
+</html>
