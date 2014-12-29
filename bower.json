@@ -1,7 +1,7 @@
 {
   "name": "ng-facebook",
   "main": "ngFacebook.js",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://github.com/GoDisco/ngFacebook",
   "authors": [
     "AlmogBaku <almog.baku@gmail.com>"
