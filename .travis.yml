@@ -2,10 +2,13 @@ language: node_js
 node_js:
   - "0.10"
 
+env:
+  global:
+    - secure: nNjYM73ECnxTS5E4Tqp2hgfQqa+J5elCxGmlJXvSHHLYDr12/BiSFCaGoOSBtVUl4YByaaOpDDtT+9EHsZLrDnhAiisqWw8l7zPcsOoHFLKxD49HJaAw47j0YPBgJ2k1z4SThrTyCa3+sBxcqjrrz0pcKZ7rooPgljHGAvtHkaY=
+    - secure: TV53LPRKV622p0fGIuMwoLQCbXo4PvNIbKt4yCRLaIZT3QvOWSPx3hIghgEyq85TdGfy8tr2aPvHfBWr9ozIFDcclDvxVc/t3n4E+rG9e+9Cb235JtwDbWppJPj1OTSH/af+oyWuKK+IPTtgNVTcvyj24GGy9IsH52ngJEqbgBc=
+
 addons:
-  sauce_connect:
-    username: "ngFacebook"
-    access_key: "da67f9c2-bb80-424b-8879-cac1feae30cd"
+  sauce_connect: true
 
 install:
   - npm install
