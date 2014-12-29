@@ -33,6 +33,9 @@ angular.module('ngFacebook', [])
       return config.version;
     };
     this.setPermissions = function(permissions) {
+      if(permissions instanceof Array) {
+        permissions.join(',');
+      }
       config.permissions=permissions;
       return this;
     };
