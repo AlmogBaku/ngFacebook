@@ -17,6 +17,7 @@ install:
 before_script:
   - mkdir -p $LOGS_DIR
   - ./test/scripts/sauce_connect_setup.sh
+  - ./test/scripts/print_logs.sh
   - ./test/scripts/wait_for_browser_provider.sh
 
 script:
