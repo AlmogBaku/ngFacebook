@@ -1,5 +1,5 @@
-Angular Facebook
-================
+Angular Facebook [![Build Status](https://travis-ci.org/GoDisco/ngFacebook.svg?branch=master)](https://travis-ci.org/GoDisco/ngFacebook)
+==================
 Angular service to handle facebook
 
 Installation
