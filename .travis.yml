@@ -2,21 +2,16 @@ language: node_js
 node_js:
   - "0.10"
 
-env:
-  global:
-    - SAUCE_USERNAME=ngFacebook
-    - SAUCE_ACCESS_KEY=da67f9c2-bb80-424b-8879-cac1feae30cd
-    - LOGS_DIR=/tmp/protractor-build/logs
-    - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
+addons:
+  sauce_connect:
+    username: "ngFacebook"
+    access_key: "da67f9c2-bb80-424b-8879-cac1feae30cd"
 
 install:
   - npm install
   - npm install protractor cucumber bower -g
   - npm install lodash
   - bower install
-
-before_script:
-  - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
 
 script:
   - node test/scripts/web-server.js &
