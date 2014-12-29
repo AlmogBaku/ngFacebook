@@ -23,5 +23,8 @@
     "express": "~4.10.6",
     "chai": "~1.10.0",
     "chai-as-promised": "~4.1.1"
+  },
+  "scripts": {
+    "test": "protractor"
   }
 }
