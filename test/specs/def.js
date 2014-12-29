@@ -11,17 +11,17 @@ var expect = chai.expect;
 module.exports = function() {
   this.Given('angular webpage with ngFacebook', function(next) {
     browser.get('index.html');
-    setTimeout(function() {
-      next();
-    }, 4500);
+    next();
   });
   this.Then('facebook sdk should be loaded', function(next) {
-    browser.driver.executeScript(function() {
-      return window.FB;
-    }).then(function(FB) {
-      expect(FB).to.exist;
-      next();
+    var fbRoot = by.id('fb-root');
+    browser.wait(function() {
+      return browser.driver.isElementPresent(fbRoot);
+    }, 10000);
+    browser.driver.isElementPresent(fbRoot).then(function(exists) {
+      expect(exists).to.equal(true);
     });
+    next();
   });
 
   this.Given('an anonymous state', function(next) {
