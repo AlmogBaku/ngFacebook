@@ -1,6 +1,6 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  baseUrl: 'http://localhost:8081/test/',
+  baseUrl: 'http://localhost:'+(process.env.HTTP_PORT || 8081)+'/test/',
   framework: 'cucumber',
   specs: [
     'features/*.feature'

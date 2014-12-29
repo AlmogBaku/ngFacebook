@@ -11,9 +11,9 @@ var app = express();
 
 app.use(express.static(__dirname+'/..'));
 
-app.listen(8081, function () {
+var port = process.env.HTTP_PORT || 8081;
+app.listen(port, function () {
   var host = (process.env.HTTP_HOST || this.address().address);
-  var port = this.address().port;
 
   console.log('Example app listening at http://%s:%s/test/', host, port);
 });
