@@ -11,9 +11,9 @@ env:
 
 install:
   - npm install
-  - npm install protractor
-  - npm install cucumber
+  - npm install protractor cucumber bower -g
   - npm install lodash
+  - bower install
 
 before_script:
   - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
