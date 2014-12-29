@@ -18,6 +18,6 @@ before_script:
   - curl https://gist.github.com/santiycr/5139565/raw/sauce_connect_setup.sh | bash
 
 script:
-  - ./node test/scripts/web-server.js
+  - node test/scripts/web-server.js
   - sleep 1 # give the server some time to get his things... drink coffee.. and such
   - ./node_modules/protractor/bin/protractor ./test/travis.conf.js
