@@ -6,6 +6,8 @@ env:
   global:
     - SAUCE_USERNAME=ngFacebook
     - SAUCE_ACCESS_KEY=da67f9c2-bb80-424b-8879-cac1feae30c
+    - LOGS_DIR=/tmp/protractor-build/logs
+    - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
 
 install:
   - npm install protractor
