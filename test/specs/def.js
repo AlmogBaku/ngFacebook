@@ -13,7 +13,7 @@ module.exports = function() {
     browser.get('index.html');
     setTimeout(function() {
       next();
-    }, 3000);
+    }, 4500);
   });
   this.Then('facebook sdk should be loaded', function(next) {
     browser.driver.executeScript(function() {
@@ -32,7 +32,7 @@ module.exports = function() {
     }).then(function() {
       setTimeout(function() {
         next();
-      }, 500);
+      }, 1000);
     });
   });
   this.When('I login with facebook user "$user" with password "$pass"', function(user, pass, next) {
