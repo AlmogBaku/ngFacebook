@@ -19,4 +19,4 @@ install:
 script:
   - node test/scripts/web-server.js &
   - sleep 1 # give the server some time to get his things... drink coffee.. and such
-  - protractor ./test/travis.conf.js
+  - protractor
