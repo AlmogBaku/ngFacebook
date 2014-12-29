@@ -12,6 +12,7 @@ env:
 install:
   - npm install protractor
   - npm install cucumber
+  - npm install lodash
 
 before_script:
   - mkdir -p $LOGS_DIR

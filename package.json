@@ -22,7 +22,6 @@
   "devDependencies": {
     "express": "~4.10.6",
     "chai": "~1.10.0",
-    "chai-as-promised": "~4.1.1",
-    "lodash": "~2.4.1"
+    "chai-as-promised": "~4.1.1"
   }
 }
