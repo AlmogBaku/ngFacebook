@@ -7,7 +7,7 @@ exports.config = {
   ],
   cucumberOpts: {
     require: 'test/specs/*.js',
-    format: 'summary'
+    format: 'pretty'
   },
   sauceUser: process.env.SAUCE_USERNAME,
   sauceKey: process.env.SAUCE_ACCESS_KEY,
