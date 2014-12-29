@@ -88,4 +88,18 @@ module.exports = function() {
     });
     next();
   });
+
+  this.When('I getting the list of my friends', function(next) {
+    element(by.id('friends-btn')).click()
+      .then(function() {
+        setTimeout(next, 1000)
+      });
+  });
+  this.Then('I should see "$friend" as a friend of mine', function(friend, next) {
+    element(by.id('friend-list')).getText().then(function(text) {
+      var friendlist = text.split('\n')
+      expect(friendlist).to.contain(friend);
+    });
+    next();
+  });
 };

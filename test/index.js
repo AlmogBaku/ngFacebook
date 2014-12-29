@@ -8,7 +8,7 @@
 
 angular.module('myApp', ['ngFacebook'])
   .config(['$facebookProvider', function($facebookProvider) {
-    $facebookProvider.setAppId('764262530321266');
+    $facebookProvider.setAppId('764262530321266').setPermissions(['email','user_friends']);
   }])
   .run(['$rootScope', '$window', function($rootScope, $window) {
     (function(d, s, id) {
@@ -39,5 +39,12 @@ angular.module('myApp', ['ngFacebook'])
         $facebook.login();
       }
     };
+
+    $scope.getFriends = function() {
+      if(!$scope.status) return;
+      $facebook.cachedApi('/me/friends').then(function(friends) {
+        $scope.friends = friends.data;
+      });
+    }
   }])
 ;

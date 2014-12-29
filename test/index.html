@@ -4,18 +4,37 @@
     <meta charset="UTF-8">
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../ngFacebook.js"></script>
-    <script src="testSetup.js"></script>
+    <script src="index.js"></script>
+    <style>
+        ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
 </head>
-<body ng-controller="myCtrl">
-    <button id="login-btn" ng-click="loginToggle()">
-        <span ng-if="status">Logout</span>
-        <span ng-if="!status">Login</span>
-    </button>
-    <span ng-if="status" class="message">
-        You are <strong>Logged in</strong> as <em>{{user.first_name}} {{user.last_name}}</em>
-    </span>
-    <span ng-if="!status" class="message">
-        You are <strong>not</strong> logged in.
-    </span>
+<body ng-controller="myCtrl" ng-cloak>
+    <h1>ngFacebook tests</h1>
+    <div>
+        <h2>Login</h2>
+        <button id="login-btn" ng-click="loginToggle()">
+            <span ng-if="status">Logout</span>
+            <span ng-if="!status">Login</span>
+        </button>
+        <span ng-if="status" class="message">
+            You are <strong>Logged in</strong> as <em>{{user.first_name}} {{user.last_name}}</em>
+        </span>
+        <span ng-if="!status" class="message">
+            You are <strong>not</strong> logged in.
+        </span>
+    </div>
+    <div ng-show="status">
+        <h2>Friends via cachedApi:</h2>
+        <button id="friends-btn" ng-click="getFriends()">Get friends</button>
+        <div ng-show="friends">
+            <h3>List of friends:</h3>
+            <ul id="friend-list">
+                <li ng-repeat="friend in friends">{{friend.name}}</li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
