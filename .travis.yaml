@@ -1,0 +1,25 @@
+language: node_js
+node_js:
+  - "0.10"
+
+env:
+  global:
+    - SAUCE_USERNAME=ngFacebook
+    - SAUCE_ACCESS_KEY=da67f9c2-bb80-424b-8879-cac1feae30c
+
+install:
+  - npm install protractor
+  - npm install cucumber
+
+before_script:
+  - mkdir -p $LOGS_DIR
+  - ./test/scripts/sauce_connect_setup.sh
+  - ./test/scripts/wait_for_browser_provider.sh
+
+script:
+  - ./node test/scripts/web-server.js
+  - sleep 1 # give the server some time to get his things... drink coffee.. and such.
+  - ./node_modules/protractor/bin/protractor ./test/travis.conf.js
+
+after_script:
+  - ./test/scripts/print_logs.sh
