@@ -4,7 +4,10 @@ Angular service to handle facebook
 
 Installation
 ------------
-1. Download the package, you can download the [zip file](https://github.com/GoDisco/ngFacebook/archive/master.zip), or use bower: `bower install ng-facebook`
+1. Download the package:
+   1. download using npm: `npm install ng-facebook`
+   1. download using the [zip file](https://github.com/GoDisco/ngFacebook/archive/master.zip)
+   1. download using bower: `bower install ng-facebook`
 1. Modify your application to include `ngFacebook` in your application dependencies
 1. Configure the ngFacebook module using the configuration steps outlined in the section titled "Configuration" below.
 1. Load the [*Facebook SDK for javascript*](https://developers.facebook.com/docs/reference/javascript/), **BUT DO NOT** call `FB.init` or set `window.fbAsyncInit`. These steps are automatically done by the ngFacebook module.

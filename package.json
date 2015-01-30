@@ -1,6 +1,6 @@
 {
-  "name": "ngFacebook",
-  "version": "0.1.4",
+  "name": "ng-facebook",
+  "version": "0.1.5",
   "description": "Angular service to handle facebook api",
   "main": "ngFacebook.js",
   "repository": {
@@ -11,6 +11,7 @@
     "facebook",
     "angularjs",
     "service",
+    "ng-facebook",
     "ngFacebook"
   ],
   "author": "@AlmogBaku (by GoDisco)",
