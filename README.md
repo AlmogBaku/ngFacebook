@@ -76,7 +76,7 @@ You can also configure the following properties. Both `set` and `get` methods ar
           xfbml      : true
         });
         
-1. `version(<string>)` - specify the version of the api (_v1.0 by default_).
+1. `version(<string>)` - specify the version of the api (_2.0 by default_).
 
     Example to set:
 
