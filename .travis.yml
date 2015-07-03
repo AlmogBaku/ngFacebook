@@ -4,8 +4,8 @@ node_js:
 
 env:
   global:
-    - SAUCE_USERNAME=ngFacebook
-    - SAUCE_ACCESS_KEY=da67f9c2-bb80-424b-8879-cac1feae30cd
+    - secure: "CFH6k4N0JIjJ17qKdKDqjX45yOTcB6DY8wAHL/lDHneaIHeg0A6waHA1Ri6jjChiwsw7h8tSSYmqu+x2fdLNI4SxpVapcRhr8iunoWOIypHDJ0J8cpn4py3zs70g+RkRLXE++Prys/zj2AEvXftBQDlb0dRWf751y+TNFudC0vA="
+    - secure: "RNrtdx+CQecGkBWsaWGEr3IEsQsjXpVL/+lJfRnZYs5jQP7uE9sjWLZsBQsEGC9lFinmY+HoU0ucfxA9Kqe1Ts6itEP2lTPg2le/xRZRV6g0jCcvqc57l7WwIxhxQR74u2J3n+NhVT4FE7tvLx4jhkoCP0nIokOfsZF7+EY9W4k="
 
 addons:
   sauce_connect: true
