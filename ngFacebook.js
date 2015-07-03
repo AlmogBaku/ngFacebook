@@ -88,6 +88,7 @@ angular.module('ngFacebook', [])
 
         // Make sure 'fb.auth.authResponseChange' fires even if the user is not logged in.
         $facebook.getLoginStatus();
+        $facebook.canvasSetAutoResize();
       });
 
       /**
@@ -230,6 +231,23 @@ angular.module('ngFacebook', [])
         $facebook.setCache(arguments[0], result);
 
         return result;
+      };
+
+      $facebook.canvasSetAutoGrow = function () {
+        return FB.Canvas.setAutoGrow();
+      };
+
+      $facebook.canvasScrollTop = function (x,y) {
+        return FB.Canvas.scrollTo(x,y);
+      };
+
+      $facebook.canvasSetAutoResize = function () {
+        setInterval(function() {
+          if (!FB)
+            return;
+          var height = angular.element(document.querySelector('body'))[0].offsetHeight;
+          return FB.Canvas.setSize({ height: height });
+        }, 500);
       };
 
       return $facebook;
