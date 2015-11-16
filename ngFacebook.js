@@ -61,7 +61,7 @@ angular.module('ngFacebook', [])
 
       //Initialization
       $facebook.init = function() {
-        if($facebook.config('appId')==null)
+        if($facebook.config('appId')===null)
           throw "$facebookProvider: `appId` cannot be null";
 
         $window.FB.init(
@@ -145,7 +145,7 @@ angular.module('ngFacebook', [])
             if(response.error)  deferred.reject(response.error);
             else {
                 deferred.resolve(response);
-                if($facebook.isConnected()==null)
+                if($facebook.isConnected()===null)
                     $rootScope.$broadcast("fb.auth.authResponseChange", response, FB);
             }
             if(!$rootScope.$$phase) $rootScope.$apply();
@@ -154,7 +154,7 @@ angular.module('ngFacebook', [])
         });
       };
       $facebook.login = function (permissions, rerequest) {
-        if(permissions==undefined) permissions=$facebook.config("permissions");
+        if(permissions===undefined) permissions=$facebook.config("permissions");
         var deferred=$q.defer();
 
         var loginOptions = { scope: permissions };
@@ -237,8 +237,19 @@ angular.module('ngFacebook', [])
         return FB.Canvas.setAutoGrow();
       };
 
-      $facebook.canvasScrollTop = function (x,y) {
+      $facebook.canvasScrollTo = function (x,y) {
         return FB.Canvas.scrollTo(x,y);
+      };
+
+      $facebook.canvasGetPageInfo = function () {
+          var deferred=$q.defer();
+
+          return $facebook.promise.then(function(FB) {
+            FB.Canvas.getPageInfo(function(info) {
+              deferred.resolve(info);
+            });
+            return deferred.promise;
+          });
       };
 
       $facebook.canvasSetAutoResize = function () {
