@@ -92,7 +92,7 @@ Using
 1. `$facebook.config(property)`   - Return the config property.
 1. `$facebook.getAuthResponse()`  - Return the `AuthResponse`(assuming you already connected)
 1. `$facebook.getLoginStatus()`   - Return *promise* of the result.
-1. `$facebook.login()`   - Logged in to your app by facebook. Return *promise* of the result.
+1. `$facebook.login(permissions, rerequest)`   - Logged in to your app by facebook. Return *promise* of the result. (It's not necessary to pass the permissions again if you're using `$facebookProvider.setPermissions`, but you may want to recheck user's permissions using `rerequest` parameter.
 1. `$facebook.logout()`   - Logged out from facebook. Return *promise* of the result.
 1. `$facebook.ui(params)`   - Do UI action(see facebook sdk docs). Return *promise* of the result.
 1. `$facebook.api(args...)`   - Do API action(see facebook sdk docs). Return *promise* of the result.
