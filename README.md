@@ -1,3 +1,6 @@
+# DEPRECATED
+This is no longer supported, plkease consider following [the official HOWTO tutorial](https://developers.facebook.com/docs/javascript/howto/angularjs/).
+
 Angular Facebook [![Build Status](https://travis-ci.org/GoDisco/ngFacebook.svg?branch=master)](https://travis-ci.org/GoDisco/ngFacebook)
 ==================
 Angular service to handle facebook
