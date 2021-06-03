@@ -145,9 +145,9 @@ angular.module('ngFacebook', [])
             if(response.error)  deferred.reject(response.error);
             else {
                 deferred.resolve(response);
-                if($facebook.isConnected()==null)
-                    $rootScope.$broadcast("fb.auth.authResponseChange", response, FB);
             }
+            if($facebook.isConnected()==null)
+                $rootScope.$broadcast("fb.auth.authResponseChange", response, FB);
             if(!$rootScope.$$phase) $rootScope.$apply();
           }, force);
           return deferred.promise;
